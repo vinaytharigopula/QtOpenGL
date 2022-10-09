@@ -1,0 +1,140 @@
+/*******************************************************************************
+ * GBuffer.ubo
+ *------------------------------------------------------------------------------
+ * Not technically a ubo - but there is no clean way to bind the GBuffer.
+ ******************************************************************************/
+
+#ifndef   GBUFFER_UBO
+#define   GBUFFER_UBO
+
+#include <Math.glsl>
+#include <EncodeDecode.glsl>
+#include <Bindings.glsl>
+
+layout(binding = K_DEPTH_TEXTURE_BINDING)
+uniform highp sampler2D depthTexture;
+layout(binding = K_GEOMETRY_TEXTURE_BINDING)
+uniform highp sampler2D geometryTexture;
+layout(binding = K_MATERIAL_TEXTURE_BINDING)
+uniform highp sampler2D materialTexture;
+layout(binding = K_SURFACE_TEXTURE_BINDING)
+uniform highp sampler2D surfaceTexture;
+layout(binding = K_LIGHT_BUFFER_TEXTURE_BINDING)
+uniform highp sampler2D lightbufferTexture;
+
+highp float depth(highp vec2 uv)
+{
+  return texture(depthTexture, uv).r;
+}
+
+highp float depth()
+{
+  return depth(uvCoord());
+}
+
+highp float linearDepth(highp vec2 uv)
+{
+  return linearizeDepth(depth(uv));
+}
+
+highp float linearDepth()
+{
+  return linearDepth(uvCoord());
+}
+
+highp vec3 clipPosition(vec2 uv)
+{
+  return vec3(uv * 2.0 - 1.0, depth(uv) * 2.0 - 1.0);
+}
+
+highp vec3 clipPosition()
+{
+  return clipPosition(uvCoord());
+}
+
+highp vec3 viewPosition(vec2 uv)
+{
+  highp vec4 clipPos = vec4(clipPosition(uv), 1.0);
+  highp vec4 viewPos = Current.PerspToView * clipPos;
+  return (viewPos.xyz / viewPos.w);
+}
+
+highp vec3 viewPosition()
+{
+  return viewPosition(uvCoord());
+}
+
+highp vec3 worldPosition(vec2 uv)
+{
+  highp vec4 clipPos = vec4(clipPosition(uv), 1.0);
+  highp vec4 worldPos = Current.PerspToWorld * clipPos;
+  return (worldPos.xyz / worldPos.w);
+}
+
+highp vec3 worldPosition()
+{
+  return worldPosition(uvCoord());
+}
+
+highp vec3 normal(highp vec2 uv)
+{
+  vec3 n = decodeNormal(texture(geometryTexture, uv).xy);
+  return vec3(n.xy, abs(n.z));
+}
+
+highp vec3 normal()
+{
+  return normal(uvCoord());
+}
+
+highp vec3 baseColor(highp vec2 uv)
+{
+  return texture(materialTexture, uv).rgb;
+}
+
+highp vec3 baseColor()
+{
+  return baseColor(uvCoord());
+}
+
+highp float metallic(highp vec2 uv)
+{
+  return clamp(texture(surfaceTexture, uv).y, 0.02, 0.99);
+}
+
+highp float metallic()
+{
+  return metallic(uvCoord());
+}
+
+highp vec2 velocity(highp vec2 uv)
+{
+  return texture(geometryTexture, uv).zw;
+}
+
+highp vec2 velocity()
+{
+  return velocity(uvCoord());
+}
+
+highp float roughness(highp vec2 uv)
+{
+  return max(texture(surfaceTexture, uv).x, 0.001);
+}
+
+highp float roughness()
+{
+  return roughness(uvCoord());
+}
+
+highp vec4 lightbuffer(highp vec2 uv)
+{
+  return texture(lightbufferTexture, uv);
+}
+
+highp vec4 lightbuffer()
+{
+  return lightbuffer(uvCoord());
+}
+
+#endif // GBUFFER_UBO

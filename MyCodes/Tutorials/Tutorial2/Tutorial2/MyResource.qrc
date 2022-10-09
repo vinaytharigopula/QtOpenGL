@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/SVGFIles/india.svg</file>
+        <file>Resources/SVGFIles/world.svg</file>
+        <file>Resources/PlaneImages/images.jpeg</file>
+        <file>Resources/PlaneImages/images.png</file>
+    </qresource>
+</RCC>

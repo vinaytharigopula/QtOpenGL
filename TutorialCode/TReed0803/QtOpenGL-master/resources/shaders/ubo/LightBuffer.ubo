@@ -1,0 +1,31 @@
+/*******************************************************************************
+ * ubo/SpotLight.ubo
+ *------------------------------------------------------------------------------
+ * All of the current rendering spotlight information.
+ ******************************************************************************/
+
+#ifndef LIGHTBUFFER_UBO
+#define LIGHTBUFFER_UBO
+
+#include <Bindings.glsl>
+
+layout(binding = K_LIGHT_BINDING,std140)
+uniform LightBufferProperties
+{
+  highp mat4 ModelToPersp;
+  highp mat4 ViewToLightPersp;
+  highp vec3 Attenuation;
+  highp float MaxFalloff;
+  highp vec3 ViewPosition;
+  float InnerAngle;
+  highp vec3 ViewDirection;
+  float OuterAngle;
+  highp vec3 Diffuse;
+  float DiffAngle;
+  highp vec3 Specular;
+  highp float Exponential;
+  highp float MinFalloff;
+  highp float NearPlane;
+} Light;
+
+#endif // LIGHTBUFFER_UBO

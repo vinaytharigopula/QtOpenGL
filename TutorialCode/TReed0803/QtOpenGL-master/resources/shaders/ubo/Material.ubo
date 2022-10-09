@@ -1,0 +1,23 @@
+/*******************************************************************************
+ * ubo/Material.ubo
+ *------------------------------------------------------------------------------
+ * All of the current material information
+ ******************************************************************************/
+
+#ifndef MATERIAL_UBO
+#define MATERIAL_UBO
+
+#include <Bindings.glsl>
+
+layout(binding = K_MATERIAL_BINDING, std140)
+uniform MaterialBuffer
+{
+  vec3 BaseColor;
+  float Metallic;
+  float Roughness;
+  float padding0;
+  float padding1;
+  float padding2;
+} Material;
+
+#endif // MATERIAL_UBO

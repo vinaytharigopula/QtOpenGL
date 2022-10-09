@@ -1,0 +1,48 @@
+/*******************************************************************************
+ * ubo/GlobalBuffer.ubo
+ *------------------------------------------------------------------------------
+ * All of the global state information.
+ ******************************************************************************/
+
+#ifndef GLOBALBUFFER_UBO
+#define GLOBALBUFFER_UBO
+
+#include <Bindings.glsl>
+
+layout(binding = K_CURRENT_VIEW_BINDING, std140)
+uniform CurrentRenderBlock
+{
+  highp mat4 WorldToView;
+  highp mat4 ViewToWorld;
+  highp mat4 WorldToPersp;
+  highp mat4 PerspToWorld;
+  highp mat4 ViewToPersp;
+  highp mat4 PerspToView;
+  highp vec2 Dimensions;
+  highp vec2 ViewportOffset;
+  highp float NearPlane;
+  highp float FarPlane;
+  highp float DiffPlane;
+  highp float SumPlane;
+  highp float Exposure;
+} Current;
+
+layout(binding = K_PREVIOUS_VIEW_BINDING, std140)
+uniform PreviousRenderBlock
+{
+  highp mat4 WorldToView;
+  highp mat4 ViewToWorld;
+  highp mat4 WorldToPersp;
+  highp mat4 PerspToWorld;
+  highp mat4 ViewToPersp;
+  highp mat4 PerspToView;
+  highp vec2 Dimensions;
+  highp vec2 ViewportOffset;
+  highp float NearPlane;
+  highp float FarPlane;
+  highp float DiffPlane;
+  highp float SumPlane;
+  highp float Exposure;
+} Previous;
+
+#endif // GLOBALBUFFER_UBO

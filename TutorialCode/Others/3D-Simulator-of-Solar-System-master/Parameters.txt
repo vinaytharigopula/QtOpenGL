@@ -1,0 +1,101 @@
+Num = 10
+[Object1]
+name = "Sun"
+type = "Star"
+speedRevolution = 0
+speedRotation = 25
+radius = 2
+mass = 2.0E30
+distance = 0
+parent = ""
+color = 1 0 0 0.5
+[Object2]
+name = "Mercury"
+type = "Planet"
+speedRevolution = 88
+speedRotation = 58.625
+radius = 0.683
+mass = 3.3E23
+distance = 3.544
+parent = "Sun"
+color = 0.2 0.2 0.5 1
+[Object3]
+name = "Venus"
+type = "Planet"
+speedRevolution = 225
+speedRotation = 116.75
+radius = 0.95
+mass = 4.9E24
+distance = 6.692
+parent = "Sun"
+color = 1 0.7 0 1
+[Object4]
+name = "Earth"
+type = "Planet"
+speedRevolution = 365
+speedRotation = 1
+radius = 1
+mass = 6.0E24
+distance = 9.8
+parent = "Sun"
+color = 0 1 0 1
+[Object5]
+name = "Mars"
+type = "Planet"
+speedRevolution = 687
+speedRotation = 1.02
+radius = 0.532
+mass = 6.4E23
+distance = 11.8
+parent = "Sun"
+color = 1 0.5 0.5 1
+[Object6]
+name = "Jupiter"
+type = "Planet"
+speedRevolution = 4380
+speedRotation = 0.416
+radius = 1.5
+mass = 1.9E27
+distance = 14
+parent = "Sun"
+color = 1 1 0.5 1
+[Object7]
+name = "Saturn"
+type = "Planet"
+speedRevolution = 10585
+speedRotation = 0.44
+radius = 1.2
+mass = 5.7E26
+distance = 17
+parent = "Sun"
+color = 0.5 1 0.5 1
+[Object8]
+name = "Uranus"
+type = "Planet"
+speedRevolution = 30660
+speedRotation = 0.719
+radius = 1.0
+mass = 8.7E25
+distance = 19
+parent = "Sun"
+color = 0.4 0.4 0.4 1
+[Object9]
+name = "Neptune"
+type = "Planet"
+speedRevolution = 60225
+speedRotation = 0.67
+radius = 1.0
+mass = 1.0E26
+distance = 21.5
+parent = "Sun"
+color = 0.5 0.5 1 1
+[Object10]
+name = "Moon"
+type = "Planet"
+speedRevolution = 30
+speedRotation = 3
+radius = 0.272
+mass = 7.4E22
+distance = 1.5
+parent = "Earth"
+color = 0.4 0.4 0.4 1

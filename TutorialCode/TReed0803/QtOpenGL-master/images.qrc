@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/images/AlexsApt.hdr</file>
+        <file>resources/images/AlexsApt_Env.hdr</file>
+    </qresource>
+</RCC>
