@@ -15,9 +15,49 @@
 
 #include "MyWorker.h"
 
+
+#include <iostream>
+#include <utility>
+
+#include <QDir>
+#include <QMap>
+#include <QPair>
+
+#include <QFileInfo>
+#include <QtAlgorithms>
+#include <algorithm>
+#include <QMapIterator>
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
 QT_END_NAMESPACE
+
+using namespace std;
+
+
+struct MySortX{
+    bool operator()(qint64 &s1,qint64 &s2){
+        return s1<s2;
+    }
+};
+
+//struct MySort2{
+//    bool operator()(QPair<QString,int> s1,QPair<QString,int> s2){
+
+//        return s1.second ()<s2.second ();
+//    }
+//};
+
+//bool cmp(const  QPair<QString,int>& a,const  QPair<QString, int>& b)
+//{
+//    return (a.second < b.second);
+//}
+
+// Comparator function to sort pairs
+// according to second value
+
+
 
 class Widget : public QWidget
 {
@@ -26,7 +66,9 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
-
+signals:
+    void sendShowAllPoints(bool B);
+    void sendClearAllPoints();
 protected slots:
 //    void resizeGL(int w, int h);
 //    void paintGL();
@@ -37,9 +79,15 @@ protected:
 private slots:
     void on_Start_clicked();
 
+    void onMouseMoveEvent(QPointF P);
+    void on_chk_ShowAllPoints_clicked(bool checked);
+
 private:
     Ui::Widget *ui;
     QThread *mythread;
     MyWorker *worker;
+
+
+    MySortX srt;
 };
 #endif // WIDGET_H

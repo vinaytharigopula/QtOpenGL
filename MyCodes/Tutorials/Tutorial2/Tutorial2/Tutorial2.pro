@@ -17,6 +17,7 @@ SOURCES += \
     GLWidget.cpp \
     GlWidget2.cpp \
     MyWorker.cpp \
+    kmeanslogic.cpp \
     main.cpp \
     Widget.cpp
 
@@ -24,7 +25,8 @@ HEADERS += \
     GLWidget.h \
     GlWidget2.h \
     MyWorker.h \
-    Widget.h
+    Widget.h \
+    kmeanslogic.h
 
 FORMS += \
     Widget.ui

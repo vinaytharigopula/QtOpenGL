@@ -4,6 +4,8 @@
 #include <QOpenGLWidget>
 #include <QObject>
 #include <QWidget>
+#include <QRect>
+#include <QVector>
 
 #include <QWidget>
 #include <QMouseEvent>
@@ -49,12 +51,20 @@ extern "C"{
 }
 
 
+
+
+
+
+
 class GlWidget2 : public QOpenGLWidget
 {
     Q_OBJECT
 public:
 
     explicit GlWidget2(QWidget *parent = nullptr);
+
+signals:
+    void sendMouseMoveEvent(QPointF p);
 
 public slots:
 
@@ -77,6 +87,12 @@ protected:
 
     void wheelEvent(QWheelEvent *event) override;
 
+private slots:
+    void initGridLogic();
+    void showGrid(double w, double h, int w_Div, int h_Div);
+    int getGridNumber(QPointF p);
+    void showAllPoints(bool B);
+    void clearAllPoints();
 private:
 
     QSvgRenderer renderer;
@@ -88,6 +104,22 @@ private:
     double m_zoomTransX=0.0;
     double m_zoomTransY=0.0;
     QPointF m_lastZoomPos=QPointF(0,0);
+
+    QPoint GridSize;
+
+    int w_maingrid=0;
+    int h_maingrid=0;
+
+
+    int prevcursorY=0;
+
+    QVector<QRect> Vecrec;
+
+    QVector<QPointF> temp;
+    QVector<QVector<QPointF>> gridPoints;
+    int drawingGrid=0;
+    bool showAllPoint=false;
+
 
 };
 

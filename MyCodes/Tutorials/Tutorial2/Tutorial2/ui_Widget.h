@@ -12,6 +12,7 @@
 #include <GlWidget2.h>
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
@@ -26,22 +27,24 @@ class Ui_Widget
 public:
     QGridLayout *gridLayout;
     GlWidget2 *openGLWidget;
-    QHBoxLayout *horizontalLayout;
-    QLabel *label;
-    QPushButton *Start;
-    QSlider *rotXSlider;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_2;
     QSlider *rotYSlider;
+    QHBoxLayout *horizontalLayout;
+    QLabel *label;
+    QPushButton *Start;
+    QCheckBox *chk_ShowAllPoints;
+    QSlider *rotXSlider;
     QHBoxLayout *horizontalLayout_3;
     QLabel *label_3;
     QSlider *rotZSlider;
+    QLabel *label_Status;
 
     void setupUi(QWidget *Widget)
     {
         if (Widget->objectName().isEmpty())
             Widget->setObjectName(QString::fromUtf8("Widget"));
-        Widget->resize(625, 523);
+        Widget->resize(625, 572);
         Widget->setMaximumSize(QSize(16777215, 16777215));
         gridLayout = new QGridLayout(Widget);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
@@ -50,33 +53,6 @@ public:
         openGLWidget->setMinimumSize(QSize(0, 400));
 
         gridLayout->addWidget(openGLWidget, 0, 0, 1, 1);
-
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        label = new QLabel(Widget);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setMinimumSize(QSize(50, 0));
-
-        horizontalLayout->addWidget(label);
-
-        Start = new QPushButton(Widget);
-        Start->setObjectName(QString::fromUtf8("Start"));
-
-        horizontalLayout->addWidget(Start);
-
-        rotXSlider = new QSlider(Widget);
-        rotXSlider->setObjectName(QString::fromUtf8("rotXSlider"));
-        rotXSlider->setMaximum(5000);
-        rotXSlider->setSingleStep(16);
-        rotXSlider->setPageStep(15);
-        rotXSlider->setOrientation(Qt::Horizontal);
-        rotXSlider->setTickPosition(QSlider::TicksAbove);
-        rotXSlider->setTickInterval(15);
-
-        horizontalLayout->addWidget(rotXSlider);
-
-
-        gridLayout->addLayout(horizontalLayout, 1, 0, 1, 1);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
@@ -100,6 +76,38 @@ public:
 
         gridLayout->addLayout(horizontalLayout_2, 2, 0, 1, 1);
 
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        label = new QLabel(Widget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setMinimumSize(QSize(50, 0));
+
+        horizontalLayout->addWidget(label);
+
+        Start = new QPushButton(Widget);
+        Start->setObjectName(QString::fromUtf8("Start"));
+
+        horizontalLayout->addWidget(Start);
+
+        chk_ShowAllPoints = new QCheckBox(Widget);
+        chk_ShowAllPoints->setObjectName(QString::fromUtf8("chk_ShowAllPoints"));
+
+        horizontalLayout->addWidget(chk_ShowAllPoints);
+
+        rotXSlider = new QSlider(Widget);
+        rotXSlider->setObjectName(QString::fromUtf8("rotXSlider"));
+        rotXSlider->setMaximum(5000);
+        rotXSlider->setSingleStep(16);
+        rotXSlider->setPageStep(15);
+        rotXSlider->setOrientation(Qt::Horizontal);
+        rotXSlider->setTickPosition(QSlider::TicksAbove);
+        rotXSlider->setTickInterval(15);
+
+        horizontalLayout->addWidget(rotXSlider);
+
+
+        gridLayout->addLayout(horizontalLayout, 1, 0, 1, 1);
+
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         label_3 = new QLabel(Widget);
@@ -122,6 +130,14 @@ public:
 
         gridLayout->addLayout(horizontalLayout_3, 3, 0, 1, 1);
 
+        label_Status = new QLabel(Widget);
+        label_Status->setObjectName(QString::fromUtf8("label_Status"));
+        label_Status->setMinimumSize(QSize(0, 20));
+        label_Status->setMaximumSize(QSize(16777215, 25));
+        label_Status->setFrameShape(QFrame::Box);
+
+        gridLayout->addWidget(label_Status, 4, 0, 1, 1);
+
 
         retranslateUi(Widget);
 
@@ -131,10 +147,12 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QApplication::translate("Widget", "Widget", nullptr));
+        label_2->setText(QApplication::translate("Widget", "Y", nullptr));
         label->setText(QApplication::translate("Widget", "X ", nullptr));
         Start->setText(QApplication::translate("Widget", "Start", nullptr));
-        label_2->setText(QApplication::translate("Widget", "Y", nullptr));
+        chk_ShowAllPoints->setText(QApplication::translate("Widget", "Show AllPoints", nullptr));
         label_3->setText(QApplication::translate("Widget", "Z", nullptr));
+        label_Status->setText(QString());
     } // retranslateUi
 
 };

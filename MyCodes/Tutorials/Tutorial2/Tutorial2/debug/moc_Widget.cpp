@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Widget_t {
-    QByteArrayData data[3];
-    char stringdata0[25];
+    QByteArrayData data[10];
+    char stringdata0[120];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,11 +32,21 @@ struct qt_meta_stringdata_Widget_t {
 static const qt_meta_stringdata_Widget_t qt_meta_stringdata_Widget = {
     {
 QT_MOC_LITERAL(0, 0, 6), // "Widget"
-QT_MOC_LITERAL(1, 7, 16), // "on_Start_clicked"
-QT_MOC_LITERAL(2, 24, 0) // ""
+QT_MOC_LITERAL(1, 7, 17), // "sendShowAllPoints"
+QT_MOC_LITERAL(2, 25, 0), // ""
+QT_MOC_LITERAL(3, 26, 1), // "B"
+QT_MOC_LITERAL(4, 28, 18), // "sendClearAllPoints"
+QT_MOC_LITERAL(5, 47, 16), // "on_Start_clicked"
+QT_MOC_LITERAL(6, 64, 16), // "onMouseMoveEvent"
+QT_MOC_LITERAL(7, 81, 1), // "P"
+QT_MOC_LITERAL(8, 83, 28), // "on_chk_ShowAllPoints_clicked"
+QT_MOC_LITERAL(9, 112, 7) // "checked"
 
     },
-    "Widget\0on_Start_clicked\0"
+    "Widget\0sendShowAllPoints\0\0B\0"
+    "sendClearAllPoints\0on_Start_clicked\0"
+    "onMouseMoveEvent\0P\0on_chk_ShowAllPoints_clicked\0"
+    "checked"
 };
 #undef QT_MOC_LITERAL
 
@@ -46,18 +56,30 @@ static const uint qt_meta_data_Widget[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       2,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags
+       1,    1,   39,    2, 0x06 /* Public */,
+       4,    0,   42,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   19,    2, 0x08 /* Private */,
+       5,    0,   43,    2, 0x08 /* Private */,
+       6,    1,   44,    2, 0x08 /* Private */,
+       8,    1,   47,    2, 0x08 /* Private */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::Bool,    3,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QPointF,    7,
+    QMetaType::Void, QMetaType::Bool,    9,
 
        0        // eod
 };
@@ -68,11 +90,30 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         auto *_t = static_cast<Widget *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_Start_clicked(); break;
+        case 0: _t->sendShowAllPoints((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 1: _t->sendClearAllPoints(); break;
+        case 2: _t->on_Start_clicked(); break;
+        case 3: _t->onMouseMoveEvent((*reinterpret_cast< QPointF(*)>(_a[1]))); break;
+        case 4: _t->on_chk_ShowAllPoints_clicked((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (Widget::*)(bool );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&Widget::sendShowAllPoints)) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (Widget::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&Widget::sendClearAllPoints)) {
+                *result = 1;
+                return;
+            }
+        }
     }
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject Widget::staticMetaObject = { {
@@ -104,15 +145,28 @@ int Widget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 5)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 1;
+        _id -= 5;
     }
     return _id;
+}
+
+// SIGNAL 0
+void Widget::sendShowAllPoints(bool _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+
+// SIGNAL 1
+void Widget::sendClearAllPoints()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE
